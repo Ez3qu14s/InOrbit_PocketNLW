@@ -35,7 +35,7 @@ export async function getWeekPendingGoals() {
       .groupBy(goalCompletions.goalId)
   )
 
-  const peddingGoals = await db
+  const pendingGoals = await db
     .with(goalsCreatedUpToWeek, goalsCompletionCounts)
     .select({
       id: goalsCreatedUpToWeek.id,
@@ -50,5 +50,5 @@ export async function getWeekPendingGoals() {
       goalsCompletionCounts,
       eq(goalsCompletionCounts.goalId, goalsCreatedUpToWeek.id)
     )
-  return { peddingGoals }
+  return { pendingGoals }
 }
